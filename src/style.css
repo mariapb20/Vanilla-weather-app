@@ -1,0 +1,230 @@
+body {
+    background: linear-gradient(144.34deg, #3d4c72 20.89%, #1c243e 90.15%);
+    width: 100vw;
+    height: 100vh;
+}
+
+form {
+    margin: 16px auto;
+}
+
+footer {
+    text-align: center;
+    margin: 8px auto;
+}
+
+a:link {
+    color: white
+}
+
+a:visited {
+    color: lightgrey;
+}
+
+a:hover {
+    color: #b198c1;
+}
+
+.container {
+    display: grid;
+    place-items: center;
+    font-family: "Lato", sans-serif;
+}
+
+.search-container {
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+    width: 100%;
+}
+
+#btn,
+#search {
+    color: white;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 600;
+    border: 1px solid rgba(180, 193, 211, 0.3);
+    height: 48px;
+}
+
+#btn {
+    background: linear-gradient(144.34deg, #1b233a 20.89%, #1c243e 90.15%);
+    border-radius: 0px 24px 24px 0px;
+    padding: 0px 32px;
+    margin-right: 8px;
+    transition: 0.6s;
+}
+
+#btn:hover {
+    background: #293456;
+    cursor: pointer;
+}
+
+#search {
+    padding-left: 32px;
+    background: rgba(180, 193, 211, 0.3);
+    border-radius: 24px 0px 0px 24px;
+    min-width: 380px;
+    margin-right: 4px;
+}
+
+#btn-current {
+    background: none;
+    border-radius: 24px;
+    padding: 8px 16px;
+    margin-right: 8px;
+    transition: 0.6s;
+    border: solid;
+    border-color: white;
+    color: white;
+}
+
+.fa-solid {
+    color: #f6c24f;
+    font-size: 24px;
+    vertical-align: middle;
+}
+
+.fa-solid:hover {
+    color: #fae276;
+    cursor: pointer;
+}
+
+#bg-image {
+    position: absolute;
+    bottom: 0px;
+    width: 100vw;
+    height: 65vh;
+    opacity: 50%;
+}
+
+.toggle-temp {
+    position: absolute;
+    top: 32px;
+    right: 24px;
+}
+
+.temp-font {
+    vertical-align: middle;
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+.main-info,
+.secondary {
+    line-height: 36px;
+    font-weight: bolder;
+}
+
+.main-info,.units {
+    font-size: 32px;
+    text-align: center;
+    margin-top: 0px;
+    text-align: center;
+}
+
+.secondary {
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+.city-temp {
+    margin-top: 0px;
+    margin-bottom: 8px;
+}
+.weather-description{
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+::placeholder {
+    color: white;
+}
+
+.weather-box {
+    display: grid;
+    place-items: center;
+    background: rgba(28, 36, 62, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 32px;
+    color: white;
+    padding: 24px 80px;
+}
+
+#img-sec {
+    max-width: 64px;
+    height: 56px;
+}
+
+.week-day{
+    color: lightgray;
+}
+
+#img-main {
+    height: 120px;
+}
+
+.col {
+    display: grid;
+    place-items: center;
+}
+
+.btn-selection {
+    color: #cad1db;
+    border: 1px solid #7d6e87;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 24px;
+    background: #836894;
+    border-radius: 24px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    transition: 0.3s;
+    margin-bottom: 8px;
+}
+
+.btn-selection:hover {
+    background: #b198c1;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-selection:focus {
+    border: 2px solid #592b77;
+    color: white;
+}
+
+.city-date {
+    font-size: 20px;
+    color: #fafafa;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+#temp-button-celsius,
+#temp-button-fahrenheit {
+    color: lightgrey;
+    border: none;
+    padding: 0px 4px;
+    background: none;
+    transition: 0.3s;
+}
+
+#temp-button-celsius:hover,
+#temp-button-fahrenheit:hover {
+    color: #b198c1;
+    border: none;
+    padding: 0px 4px;
+    background: none;
+}
+
+
+#temp-button-fahrenheit:focus,
+#temp-button-celsius:focus {
+    color: white;
+    font-weight: bold;
+}
