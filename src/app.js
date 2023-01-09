@@ -1,7 +1,16 @@
 /* Show current day and time */
 
-let currentTime = new Date();
-function formatDate(date) {
+//let currentTime = new Date();
+function formatDate(timestamp) {
+  let date= new Date(timestamp);
+  let hours= date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes=date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
   let days = [
     "Sunday",
     "Monday",
@@ -12,25 +21,18 @@ function formatDate(date) {
     "Saturday"
   ];
   let currentDay = days[date.getDay()];
-  let currentHour=date.getHours();
-  let currentMinutes=date.getMinutes();
-
-  let formattedDate = `${currentDay} ${currentHour}:${currentMinutes}`;
-  let todaysDate=document.querySelector(".city-date");
-  todaysDate.innerHTML=formattedDate;
+ // let todaysDate=document.querySelector(".city-date");
   let secondDay=document.querySelector("#second-day");
   let thirdDay=document.querySelector("#third-day");
   let fourthDay=document.querySelector("#fourth-day");
   let fifthDay=document.querySelector("#fifth-day");
+  //todaysDate.innerHTML=formattedDate;
   secondDay.innerHTML=days[date.getDay()+2];
   thirdDay.innerHTML=days[date.getDay()+3];
   fourthDay.innerHTML=days[date.getDay()+4];
   fifthDay.innerHTML=days[date.getDay()+5];
+  return `${currentDay} ${hours}:${minutes}`;
 }
-
-formatDate(currentTime);
-
-
 /* Search engine returns value of city introduced */
 function searchEngine(event) {
   event.preventDefault();
@@ -52,6 +54,7 @@ function setCity(city) {
 function displayWeather(response) {
   let currentCity = document.querySelector(".city-name");
   let tempCity = document.querySelector(".city-temp");
+  let dateElement =  document.querySelector(".city-date");
   //currentCity.innerHTML = response.data.name;
   currentCity.innerHTML = response.data.city;
   tempCity.innerHTML =  `${Math.round(response.data.temperature.current)}`;
@@ -63,6 +66,7 @@ function displayWeather(response) {
   let descriptionCap=  description.charAt(0).toUpperCase() + description.slice(1);
   document.querySelector("#description").innerHTML =
   descriptionCap;
+  dateElement.innerHTML =formatDate(response.data.time*1000);
 }
 
 let form = document.querySelector("#search-form");
