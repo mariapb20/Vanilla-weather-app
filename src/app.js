@@ -41,8 +41,10 @@ function searchEngine(event) {
 }
 
 function setCity(city) {
- let apiKey = "743bee57fddbfaf52447193a87d5dd25";
- let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+/* let apiKey = "743bee57fddbfaf52447193a87d5dd25";
+ let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;*/
+ let apiKey = "cb0145od1153t706df98a650170dc2a9";
+ let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
  axios.get(url).then(displayWeather);
 }
 
@@ -50,14 +52,17 @@ function setCity(city) {
 function displayWeather(response) {
   let currentCity = document.querySelector(".city-name");
   let tempCity = document.querySelector(".city-temp");
-  currentCity.innerHTML = response.data.name;
-  tempCity.innerHTML =  `${Math.round(response.data.main.temp)}`;
-  document.querySelector("#humidity-value").innerHTML = response.data.main.humidity;
+  //currentCity.innerHTML = response.data.name;
+  currentCity.innerHTML = response.data.city;
+  tempCity.innerHTML =  `${Math.round(response.data.temperature.current)}`;
+  document.querySelector("#humidity-value").innerHTML = response.data.temperature.humidity;
   document.querySelector("#wind-value").innerHTML = Math.round(
     response.data.wind.speed
   );
+  let description = response.data.condition.description;
+  let descriptionCap=  description.charAt(0).toUpperCase() + description.slice(1);
   document.querySelector("#description").innerHTML =
-  response.data.weather[0].main;
+  descriptionCap;
 }
 
 let form = document.querySelector("#search-form");
@@ -67,8 +72,10 @@ form.addEventListener("submit", searchEngine);
 function getLatLong(position) {
   let latitudeValue=position.coords.latitude;
   let longitudeValue=position.coords.longitude;
-  let apiKey = "743bee57fddbfaf52447193a87d5dd25";
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitudeValue}&lon=${longitudeValue}&appid=${apiKey}&units=metric`;
+ /* let apiKey = "743bee57fddbfaf52447193a87d5dd25";
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitudeValue}&lon=${longitudeValue}&appid=${apiKey}&units=metric`;*/
+  let apiKey = "cb0145od1153t706df98a650170dc2a9";
+  let url = `https://api.shecodes.io/weather/v1/current?lon=${longitudeValue}&lat=${latitudeValue}&key=${apiKey}`;
   axios.get(url).then(displayWeather);  
 }
 function getCurrentCity(event) {
@@ -82,28 +89,28 @@ currentButton.addEventListener("click",getCurrentCity);
 /*Favorite cities*/
 function getCaracas() {
  let city="Caracas";
- let apiKey = "743bee57fddbfaf52447193a87d5dd25";
- let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+ let apiKey = "cb0145od1153t706df98a650170dc2a9";
+ let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
  axios.get(url).then(displayWeather);
 }
 function getMontevideo() {
  let city="Montevideo";
- let apiKey = "743bee57fddbfaf52447193a87d5dd25";
- let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+ let apiKey = "cb0145od1153t706df98a650170dc2a9";
+ let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
  axios.get(url).then(displayWeather);
 }
 
 function getBarcelona() {
  let city="Barcelona";
- let apiKey = "743bee57fddbfaf52447193a87d5dd25";
- let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+ let apiKey = "cb0145od1153t706df98a650170dc2a9";
+ let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
  axios.get(url).then(displayWeather);
 }
 
 function getParis() {
  let city="Paris";
- let apiKey = "743bee57fddbfaf52447193a87d5dd25";
- let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+ let apiKey = "cb0145od1153t706df98a650170dc2a9";
+ let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
  axios.get(url).then(displayWeather);
 }
 
