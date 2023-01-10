@@ -55,6 +55,7 @@ function displayWeather(response) {
   let currentCity = document.querySelector(".city-name");
   let tempCity = document.querySelector(".city-temp");
   let dateElement =  document.querySelector(".city-date");
+  let iconElement=document.querySelector("#img-main");
   //currentCity.innerHTML = response.data.name;
   currentCity.innerHTML = response.data.city;
   tempCity.innerHTML =  `${Math.round(response.data.temperature.current)}`;
@@ -67,6 +68,74 @@ function displayWeather(response) {
   document.querySelector("#description").innerHTML =
   descriptionCap;
   dateElement.innerHTML =formatDate(response.data.time*1000);
+  let iconValue=response.data.condition.icon;
+  if (iconValue==="broken-clouds-day"){
+    iconElement.setAttribute(
+    "src",
+    `weather-icon-png/broken-clouds.png`
+    );
+  } else if (iconValue==="clear-sky-day"){
+    iconElement.setAttribute(
+    "src",
+    `weather-icon-png/clear-day.png`
+    );
+  } else if (iconValue==="clear-sky-night"){
+    iconElement.setAttribute(
+    "src",
+    `weather-icon-png/clear-night.png`
+    );
+  } else if (iconValue==="few-clouds-day"){
+    iconElement.setAttribute(
+    "src",
+    `weather-icon-png/few-clouds-day.png`
+    );
+  } else if (iconValue==="few-clouds-night"){
+    iconElement.setAttribute(
+    "src",
+    `weather-icon-png/few-clouds-night.png`
+    );
+  } else if ((iconValue==="scattered-clouds-day") || (iconValue==="scattered-clouds-night")){
+    iconElement.setAttribute(
+    "src",
+    `weather-icon-png/scattered-clouds.png`
+    );
+  } else if ((iconValue==="broken-clouds-day") || (iconValue==="broken-clouds-night")){
+    iconElement.setAttribute(
+    "src",
+    `weather-icon-png/broken-clouds.png`
+    );
+  } else if ((iconValue==="shower-rain-day") || (iconValue==="shower-rain-night")){
+    iconElement.setAttribute(
+    "src",
+    `weather-icon-png/shower-rain.png`
+    );
+  } else if (iconValue==="rain-day"){
+    iconElement.setAttribute(
+    "src",
+    `weather-icon-png/rain-day.png`
+    );
+  } else if (iconValue==="rain-night"){
+    iconElement.setAttribute(
+    "src",
+    `weather-icon-png/rain-night.png`
+    );
+  } else if ((iconValue==="thunderstorm-day") || (iconValue==="thunderstorm-night")){
+    iconElement.setAttribute(
+    "src",
+    `weather-icon-png/thunderstorm.png`
+    );
+  } else if ((iconValue==="snow-day") || (iconValue==="snow-night")){
+    iconElement.setAttribute(
+    "src",
+    `weather-icon-png/snow.png`
+    );
+  } else if ((iconValue==="mist-day") || (iconValue==="mist-night")){
+    iconElement.setAttribute(
+    "src",
+    `weather-icon-png/mist.png`
+    );
+  }
+    iconElement.setAttribute("alt", response.data.condition.description);
 }
 
 let form = document.querySelector("#search-form");

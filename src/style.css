@@ -162,7 +162,10 @@ a:hover {
 }
 
 #img-main {
-    height: 120px;
+    max-height: 160px;
+    place-items: center;
+    display: block;
+    margin: 0 auto;
 }
 
 .col {
