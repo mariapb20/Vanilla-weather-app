@@ -139,9 +139,6 @@ function displayWeather(response) {
     iconElement.setAttribute("alt", response.data.condition.description);
 }
 
-let form = document.querySelector("#search-form");
-form.addEventListener("submit", searchEngine);
-
 /*Click on current button and show city and temp */
 function getLatLong(position) {
   let latitudeValue=position.coords.latitude;
@@ -152,13 +149,11 @@ function getLatLong(position) {
   let url = `https://api.shecodes.io/weather/v1/current?lon=${longitudeValue}&lat=${latitudeValue}&key=${apiKey}`;
   axios.get(url).then(displayWeather);  
 }
+
 function getCurrentCity(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(getLatLong);
 }
-
-let currentButton = document.querySelector("#btn-current");
-currentButton.addEventListener("click",getCurrentCity);
 
 /*Favorite cities*/
 function getCaracas() {
@@ -188,40 +183,6 @@ function getParis() {
  axios.get(url).then(displayWeather);
 }
 
-let CaracasButton = document.querySelector("#Caracas");
-CaracasButton.addEventListener("click",getCaracas);
-
-let MontevideoButton = document.querySelector("#Montevideo");
-MontevideoButton.addEventListener("click",getMontevideo);
-
-let BarcelonaButton = document.querySelector("#Barcelona");
-BarcelonaButton.addEventListener("click",getBarcelona);
-
-let ParisButton = document.querySelector("#Paris");
-ParisButton.addEventListener("click",getParis);
-
-/* Temperature unit *//*
-function tempUnitCelsius(event){
-    event.preventDefault();
-    let tempValue=document.querySelector(".city-temp");
-    let tempCelsius= 20;
-    tempValue.innerHTML=tempCelsius+ ` ºC`;
-}
-function tempUnitFahrenheit(event){
-    event.preventDefault();
-    let tempValue=document.querySelector(".city-temp");
-    let tempCelsius= 20;
-    let tempFahrenheit= Math.round((tempCelsius * 9) / 5) + 32;
-    tempValue.innerHTML=tempFahrenheit + ` ºF`;
-}
-
-    let unitValueCelsius = document.querySelector("#temp-button-celsius");
-    unitValueCelsius.addEventListener("click",tempUnitCelsius);
-
-    let unitValueFahrenheit = document.querySelector("#temp-button-fahrenheit");
-    unitValueFahrenheit.addEventListener("click",tempUnitFahrenheit);
-*/
-
 function displayFahrenheit(event){
   event.preventDefault;
   let tempElement=document.querySelector(".city-temp");
@@ -240,11 +201,30 @@ function displayCelcius(event){
 }
 
 let celsiusTemperature=null;
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", searchEngine);
+
+let currentButton = document.querySelector("#btn-current");
+currentButton.addEventListener("click",getCurrentCity);
+
 let fahrenheitButton = document.querySelector("#temp-button-fahrenheit");
 fahrenheitButton.addEventListener("click",displayFahrenheit);
+
 let celsiusButton = document.querySelector("#temp-button-celsius");
 celsiusButton.addEventListener("click",displayCelcius);
 
+let CaracasButton = document.querySelector("#Caracas");
+CaracasButton.addEventListener("click",getCaracas);
+
+let MontevideoButton = document.querySelector("#Montevideo");
+MontevideoButton.addEventListener("click",getMontevideo);
+
+let BarcelonaButton = document.querySelector("#Barcelona");
+BarcelonaButton.addEventListener("click",getBarcelona);
+
+let ParisButton = document.querySelector("#Paris");
+ParisButton.addEventListener("click",getParis);
 /*Load page and show weather in barcelona by default */
 //setCity("Barcelona");
 document.addEventListener("DOMContentLoaded", function() {
