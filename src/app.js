@@ -58,7 +58,8 @@ function displayWeather(response) {
   let iconElement=document.querySelector("#img-main");
   //currentCity.innerHTML = response.data.name;
   currentCity.innerHTML = response.data.city;
-  tempCity.innerHTML =  `${Math.round(response.data.temperature.current)}`;
+  celsiusTemperature=response.data.temperature.current;
+  tempCity.innerHTML = Math.round(celsiusTemperature);
   document.querySelector("#humidity-value").innerHTML = response.data.temperature.humidity;
   document.querySelector("#wind-value").innerHTML = Math.round(
     response.data.wind.speed
@@ -220,3 +221,32 @@ function tempUnitFahrenheit(event){
     let unitValueFahrenheit = document.querySelector("#temp-button-fahrenheit");
     unitValueFahrenheit.addEventListener("click",tempUnitFahrenheit);
 */
+
+function displayFahrenheit(event){
+  event.preventDefault;
+  let tempElement=document.querySelector(".city-temp");
+  let unitDisplayed=document.querySelector(".units");
+  let fahrenheitTemp=((celsiusTemperature * 9) / 5) + 32;
+  unitDisplayed.innerHTML="°F";
+  tempElement.innerHTML=Math.round(fahrenheitTemp);
+}
+
+function displayCelcius(event){
+  event.preventDefault;
+  let tempElement=document.querySelector(".city-temp");
+  let unitDisplayed=document.querySelector(".units");
+  unitDisplayed.innerHTML="°C";
+  tempElement.innerHTML=Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature=null;
+let fahrenheitButton = document.querySelector("#temp-button-fahrenheit");
+fahrenheitButton.addEventListener("click",displayFahrenheit);
+let celsiusButton = document.querySelector("#temp-button-celsius");
+celsiusButton.addEventListener("click",displayCelcius);
+
+/*Load page and show weather in barcelona by default */
+//setCity("Barcelona");
+document.addEventListener("DOMContentLoaded", function() {
+  setCity("Barcelona");
+  });

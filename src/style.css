@@ -161,11 +161,16 @@ a:hover {
     color:lightgray;
 }
 
-#img-main {
-    height: 160px;
+#img-container{
+    height: 120px;
+    width: 160px;
     place-items: center;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 16px auto;
+}
+#img-main {
+    height: 160px;
+
 }
 
 .col {
