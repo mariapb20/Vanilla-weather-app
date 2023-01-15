@@ -21,16 +21,15 @@ function formatDate(timestamp) {
     "Saturday"
   ];
   let currentDay = days[date.getDay()];
- // let todaysDate=document.querySelector(".city-date");
+  /*
   let secondDay=document.querySelector("#second-day");
   let thirdDay=document.querySelector("#third-day");
   let fourthDay=document.querySelector("#fourth-day");
   let fifthDay=document.querySelector("#fifth-day");
-  //todaysDate.innerHTML=formattedDate;
   secondDay.innerHTML=days[date.getDay()+2];
   thirdDay.innerHTML=days[date.getDay()+3];
   fourthDay.innerHTML=days[date.getDay()+4];
-  fifthDay.innerHTML=days[date.getDay()+5];
+  fifthDay.innerHTML=days[date.getDay()+5];*/
   return `${currentDay} ${hours}:${minutes}`;
 }
 /* Search engine returns value of city introduced */

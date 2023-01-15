@@ -152,13 +152,23 @@ a:hover {
     padding: 24px 80px;
 }
 
-#img-sec {
+.img-sec {
     max-width: 64px;
     height: 56px;
 }
+.weather-forecast {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    text-align: center;
+    color: white;
+}
 
-.max{
-    color:lightgray;
+.weather-forecast-date {
+    font-size: 16px;
+}
+
+.weather-forecast-temperature-min {
+    color: lightgray;
 }
 
 #img-container{
@@ -168,9 +178,9 @@ a:hover {
     display: block;
     margin: 0 auto 16px auto;
 }
+
 #img-main {
     height: 160px;
-
 }
 
 .col {
