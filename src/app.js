@@ -32,6 +32,30 @@ function formatDate(timestamp) {
   fifthDay.innerHTML=days[date.getDay()+5];*/
   return `${currentDay} ${hours}:${minutes}`;
 }
+
+function displayForecast(){
+  let forecastElement=document.querySelector("#forecast");
+  let days = ["Wed","Thu", "Fri", "Sat", "Sun"];
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML + `<div class="col">
+      <div class="col">
+        <div class="weather-forecast-date">${day}</div>
+          <img class="img-sec" src="weather-icon-png/shower-rain.png" alt="" width="64"/>
+          <div class="weather-forecast-temperatures">
+                <span class="weather-forecast-temperature-min"> 12° </span>
+                <span>&nbsp</span>
+            <span class="weather-forecast-temperature-max"> 18° </span>
+          </div>
+      </div>
+    </div>`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 /* Search engine returns value of city introduced */
 function searchEngine(event) {
   event.preventDefault();
@@ -136,6 +160,7 @@ function displayWeather(response) {
     );
   }
     iconElement.setAttribute("alt", response.data.condition.description);
+    displayForecast();
 }
 
 /*Click on current button and show city and temp */
