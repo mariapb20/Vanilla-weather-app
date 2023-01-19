@@ -33,7 +33,8 @@ function formatDate(timestamp) {
   return `${currentDay} ${hours}:${minutes}`;
 }
 
-function displayForecast(){
+function displayForecast(response){
+  console.log(response.data.daily);
   let forecastElement=document.querySelector("#forecast");
   let days = ["Wed","Thu", "Fri", "Sat", "Sun"];
   let forecastHTML = `<div class="row">`;
@@ -42,7 +43,7 @@ function displayForecast(){
       forecastHTML + `<div class="col">
       <div class="col">
         <div class="weather-forecast-date">${day}</div>
-          <img class="img-sec" src="weather-icon-png/shower-rain.png" alt="" width="64"/>
+          <img class="img-sec" src="weather-icon-png/shower-rain.png" alt="" max-width="72"/>
           <div class="weather-forecast-temperatures">
                 <span class="weather-forecast-temperature-min"> 12° </span>
                 <span>&nbsp</span>
@@ -55,6 +56,15 @@ function displayForecast(){
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+
+function getForecastValues(coordinates){
+  let apiKey = "cb0145od1153t706df98a650170dc2a9";
+  let lon= coordinates.longitude;
+  let lat= coordinates.latitude;
+  let apiURL=`https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
+  axios.get(apiURL).then(displayForecast);
+}
+
 
 /* Search engine returns value of city introduced */
 function searchEngine(event) {
@@ -78,8 +88,6 @@ function displayWeather(response) {
   let currentCity = document.querySelector(".city-name");
   let tempCity = document.querySelector(".city-temp");
   let dateElement =  document.querySelector(".city-date");
-  let iconElement=document.querySelector("#img-main");
-  //currentCity.innerHTML = response.data.name;
   currentCity.innerHTML = response.data.city;
   celsiusTemperature=response.data.temperature.current;
   tempCity.innerHTML = Math.round(celsiusTemperature);
@@ -93,74 +101,79 @@ function displayWeather(response) {
   descriptionCap;
   dateElement.innerHTML =formatDate(response.data.time*1000);
   let iconValue=response.data.condition.icon;
-  if (iconValue==="broken-clouds-day"){
+  displayIcons(iconValue);
+  iconElement.setAttribute("alt", response.data.condition.description);
+  getForecastValues(response.data.coordinates);
+}
+
+function displayIcons(value){
+ let iconElement=document.querySelector("#img-main");
+ if (value==="broken-clouds-day"){
     iconElement.setAttribute(
     "src",
     `weather-icon-png/broken-clouds.png`
     );
-  } else if (iconValue==="clear-sky-day"){
+  } else if (value==="clear-sky-day"){
     iconElement.setAttribute(
     "src",
     `weather-icon-png/clear-day.png`
     );
-  } else if (iconValue==="clear-sky-night"){
+  } else if (value==="clear-sky-night"){
     iconElement.setAttribute(
     "src",
     `weather-icon-png/clear-night.png`
     );
-  } else if (iconValue==="few-clouds-day"){
+  } else if (value==="few-clouds-day"){
     iconElement.setAttribute(
     "src",
     `weather-icon-png/few-clouds-day.png`
     );
-  } else if (iconValue==="few-clouds-night"){
+  } else if (value==="few-clouds-night"){
     iconElement.setAttribute(
     "src",
     `weather-icon-png/few-clouds-night.png`
     );
-  } else if ((iconValue==="scattered-clouds-day") || (iconValue==="scattered-clouds-night")){
+  } else if ((value==="scattered-clouds-day") || (value==="scattered-clouds-night")){
     iconElement.setAttribute(
     "src",
     `weather-icon-png/scattered-clouds.png`
     );
-  } else if ((iconValue==="broken-clouds-day") || (iconValue==="broken-clouds-night")){
+  } else if ((value==="broken-clouds-day") || (value==="broken-clouds-night")){
     iconElement.setAttribute(
     "src",
     `weather-icon-png/broken-clouds.png`
     );
-  } else if ((iconValue==="shower-rain-day") || (iconValue==="shower-rain-night")){
+  } else if ((value==="shower-rain-day") || (value==="shower-rain-night")){
     iconElement.setAttribute(
     "src",
     `weather-icon-png/shower-rain.png`
     );
-  } else if (iconValue==="rain-day"){
+  } else if (value==="rain-day"){
     iconElement.setAttribute(
     "src",
     `weather-icon-png/rain-day.png`
     );
-  } else if (iconValue==="rain-night"){
+  } else if (value==="rain-night"){
     iconElement.setAttribute(
     "src",
     `weather-icon-png/rain-night.png`
     );
-  } else if ((iconValue==="thunderstorm-day") || (iconValue==="thunderstorm-night")){
+  } else if ((value==="thunderstorm-day") || (value==="thunderstorm-night")){
     iconElement.setAttribute(
     "src",
     `weather-icon-png/thunderstorm.png`
     );
-  } else if ((iconValue==="snow-day") || (iconValue==="snow-night")){
+  } else if ((value==="snow-day") || (value==="snow-night")){
     iconElement.setAttribute(
     "src",
     `weather-icon-png/snow.png`
     );
-  } else if ((iconValue==="mist-day") || (iconValue==="mist-night")){
+  } else if ((value==="mist-day") || (value==="mist-night")){
     iconElement.setAttribute(
     "src",
     `weather-icon-png/mist.png`
     );
   }
-    iconElement.setAttribute("alt", response.data.condition.description);
-    displayForecast();
 }
 
 /*Click on current button and show city and temp */
