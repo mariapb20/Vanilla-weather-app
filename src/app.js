@@ -33,25 +33,43 @@ function formatDate(timestamp) {
   return `${currentDay} ${hours}:${minutes}`;
 }
 
+function forecastDate(timestamp){
+  let date= new Date(timestamp*1000);
+  let days = [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thr",
+    "Fri",
+    "Sat"
+  ];
+  let forecastDay = days[date.getDay()];
+  return `${forecastDay}`;
+}
+
 function displayForecast(response){
-  console.log(response.data.daily);
+  let forecast=response.data.daily;
   let forecastElement=document.querySelector("#forecast");
-  let days = ["Wed","Thu", "Fri", "Sat", "Sun"];
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
+  forecast.forEach(function (forecastDay, index) {
+  if (index>0){
+  let forecastmin=Math.round(forecastDay.temperature.minimum);
+  let forecastmax=Math.round(forecastDay.temperature.maximum);
+
     forecastHTML =
       forecastHTML + `<div class="col">
       <div class="col">
-        <div class="weather-forecast-date">${day}</div>
-          <img class="img-sec" src="weather-icon-png/shower-rain.png" alt="" max-width="72"/>
+        <div class="weather-forecast-date">${forecastDate(forecastDay.time)}</div>
+          <img class="img-sec" src="${displayForecastIcon(forecastDay.condition.icon)}" alt="" max-width="80"/>
           <div class="weather-forecast-temperatures">
-                <span class="weather-forecast-temperature-min"> 12° </span>
+                <span class="weather-forecast-temperature-min">${forecastmin}</span>
                 <span>&nbsp</span>
-            <span class="weather-forecast-temperature-max"> 18° </span>
+            <span class="weather-forecast-temperature-max">${forecastmax}</span>
           </div>
       </div>
     </div>`;
-  });
+  }});
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
@@ -102,8 +120,50 @@ function displayWeather(response) {
   dateElement.innerHTML =formatDate(response.data.time*1000);
   let iconValue=response.data.condition.icon;
   displayIcons(iconValue);
-  iconElement.setAttribute("alt", response.data.condition.description);
+ 
   getForecastValues(response.data.coordinates);
+}
+
+function displayForecastIcon(value){
+   if (value==="broken-clouds-day"){
+    value='weather-icon-png/broken-clouds.png';
+  } else if (value==="clear-sky-day"){
+    value=`weather-icon-png/clear-day.png`;
+  } else if (value==="clear-sky-night"){
+    value=
+    `weather-icon-png/clear-night.png`;
+  } else if (value==="few-clouds-day"){
+    value=
+    `weather-icon-png/few-clouds-day.png`;
+  } else if (value==="few-clouds-night"){
+    value=
+    `weather-icon-png/few-clouds-night.png`;
+  } else if ((value==="scattered-clouds-day") || (value==="scattered-clouds-night")){
+    value=
+    `weather-icon-png/scattered-clouds.png`;
+  } else if ((value==="broken-clouds-day") || (value==="broken-clouds-night")){
+    value=
+    `weather-icon-png/broken-clouds.png`;
+  } else if ((value==="shower-rain-day") || (value==="shower-rain-night")){
+    value=
+    `weather-icon-png/shower-rain.png`;
+  } else if (value==="rain-day"){
+    value=
+    `weather-icon-png/rain-day.png`;
+  } else if (value==="rain-night"){
+    value=
+    `weather-icon-png/rain-night.png`;
+  } else if ((value==="thunderstorm-day") || (value==="thunderstorm-night")){
+    value=
+    `weather-icon-png/thunderstorm.png`;
+  } else if ((value==="snow-day") || (value==="snow-night")){
+    value=
+    `weather-icon-png/snow.png`;
+  } else if ((value==="mist-day") || (value==="mist-night")){
+    value=
+    `weather-icon-png/mist.png`;
+  }
+  return value;
 }
 
 function displayIcons(value){
@@ -174,6 +234,7 @@ function displayIcons(value){
     `weather-icon-png/mist.png`
     );
   }
+//   iconElement.setAttribute("alt", response.data.condition.description);
 }
 
 /*Click on current button and show city and temp */

@@ -172,15 +172,17 @@ a:hover {
 }
 
 #img-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 120px;
     width: 160px;
-    place-items: center;
-    display: block;
     margin: 0 auto 16px auto;
 }
 
 #img-main {
-    height: 160px;
+    height: 100%;
+    width:100%;
 }
 
 .col {
@@ -189,7 +191,7 @@ a:hover {
 }
 
 .btn-selection {
-    color: #cad1db;
+    color: #fafafa;
     border: 1px solid #7d6e87;
     display: flex;
     flex-direction: row;
