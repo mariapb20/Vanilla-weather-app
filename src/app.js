@@ -1,6 +1,4 @@
 /* Show current day and time */
-
-//let currentTime = new Date();
 function formatDate(timestamp) {
   let date= new Date(timestamp);
   let hours= date.getHours();
@@ -21,15 +19,6 @@ function formatDate(timestamp) {
     "Saturday"
   ];
   let currentDay = days[date.getDay()];
-  /*
-  let secondDay=document.querySelector("#second-day");
-  let thirdDay=document.querySelector("#third-day");
-  let fourthDay=document.querySelector("#fourth-day");
-  let fifthDay=document.querySelector("#fifth-day");
-  secondDay.innerHTML=days[date.getDay()+2];
-  thirdDay.innerHTML=days[date.getDay()+3];
-  fourthDay.innerHTML=days[date.getDay()+4];
-  fifthDay.innerHTML=days[date.getDay()+5];*/
   return `${currentDay} ${hours}:${minutes}`;
 }
 
@@ -94,8 +83,6 @@ function searchEngine(event) {
 }
 
 function setCity(city) {
-/* let apiKey = "743bee57fddbfaf52447193a87d5dd25";
- let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;*/
  let apiKey = "cb0145od1153t706df98a650170dc2a9";
  let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
  axios.get(url).then(displayWeather);
@@ -241,8 +228,6 @@ function displayIcons(value){
 function getLatLong(position) {
   let latitudeValue=position.coords.latitude;
   let longitudeValue=position.coords.longitude;
- /* let apiKey = "743bee57fddbfaf52447193a87d5dd25";
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitudeValue}&lon=${longitudeValue}&appid=${apiKey}&units=metric`;*/
   let apiKey = "cb0145od1153t706df98a650170dc2a9";
   let url = `https://api.shecodes.io/weather/v1/current?lon=${longitudeValue}&lat=${latitudeValue}&key=${apiKey}`;
   axios.get(url).then(displayWeather);  
@@ -284,10 +269,13 @@ function getParis() {
 function displayFahrenheit(event){
   event.preventDefault;
   let tempElement=document.querySelector(".city-temp");
+//  let forecastTempMin=document.querySelector(".weather-forecast-temperature-min");
+//  let forecastTempMax=document.querySelector(".weather-forecast-temperature-max");
   let unitDisplayed=document.querySelector(".units");
   let fahrenheitTemp=((celsiusTemperature * 9) / 5) + 32;
   unitDisplayed.innerHTML="°F";
   tempElement.innerHTML=Math.round(fahrenheitTemp);
+ // forecastTempMin.innerHTML=Math.round(forecastFahMin);
 }
 
 function displayCelcius(event){
@@ -324,7 +312,6 @@ BarcelonaButton.addEventListener("click",getBarcelona);
 let ParisButton = document.querySelector("#Paris");
 ParisButton.addEventListener("click",getParis);
 /*Load page and show weather in barcelona by default */
-//setCity("Barcelona");
 document.addEventListener("DOMContentLoaded", function() {
   setCity("Barcelona");
   });
