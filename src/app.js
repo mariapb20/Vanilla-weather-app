@@ -269,16 +269,16 @@ function getParis() {
 function displayFahrenheit(event){
   event.preventDefault;
   let tempElement=document.querySelector(".city-temp");
-  let forecastTempMin=document.querySelector(".weather-forecast-temperature-min");
-  let forecastTempMax=document.querySelector(".weather-forecast-temperature-max");
+ // let forecastTempMin=document.querySelector(".weather-forecast-temperature-min");
+ // let forecastTempMax=document.querySelector(".weather-forecast-temperature-max");
   let unitDisplayed=document.querySelector(".units");
   let fahrenheitTemp=((celsiusTemperature * 9) / 5) + 32;
   unitDisplayed.innerHTML="°F";
   tempElement.innerHTML=Math.round(fahrenheitTemp);
-  let minFahTemp=((forecastmin * 9) / 5) + 32;
-  forecastTempMin.innerHTML=Math.round(minFahTemp);
-  let maxFahTemp=((forecastmax * 9) / 5) + 32;
-  forecastTempMax.innerHTML=Math.round(maxFahTemp);
+ // let minFahTemp=((forecastmin * 9) / 5) + 32;
+ // forecastTempMin.innerHTML=Math.round(minFahTemp);
+ // let maxFahTemp=((forecastmax * 9) / 5) + 32;
+ // forecastTempMax.innerHTML=Math.round(maxFahTemp);
 }
 
 function displayCelcius(event){
