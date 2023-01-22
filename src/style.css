@@ -175,12 +175,14 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 120px;
+    height: 140px;
     width: 160px;
-    margin: 0 auto 16px auto;
+    margin: 0 auto;
 }
 
 #img-main {
+    vertical-align: inherit;
+    place-items: center;
     height: 100%;
     width:100%;
 }
