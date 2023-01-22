@@ -153,8 +153,10 @@ a:hover {
 }
 
 .img-sec {
-    max-width: 64px;
-    height: 56px;
+    max-width: 56px;
+    max-height: 40px;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 .weather-forecast {
     margin-top: 4px;
@@ -181,10 +183,9 @@ a:hover {
 }
 
 #img-main {
-    vertical-align: inherit;
-    place-items: center;
-    height: 100%;
-    width:100%;
+    display: block;
+    max-height: 100%;
+    max-width:100%;
 }
 
 .col {
