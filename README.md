@@ -12,3 +12,5 @@ To see the weather in your current city:
 
 To see the weather in the favorite cities:
 5- Click on each of the favorite cities buttons
+
+The conversion to fahrenheit is currently only available for the current temperature, not the forecast.
