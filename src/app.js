@@ -275,28 +275,22 @@ function displayFahrenheit(event){
   let fahrenheitTemp=((celsiusTemperature * 9) / 5) + 32;
   unitDisplayed.innerHTML="°F";
   tempElement.innerHTML=Math.round(fahrenheitTemp);
-  function minvalue (value){
-  let minFahTemp=((value * 9) / 5) + 32;
+  let minFahTemp=((forecastmin * 9) / 5) + 32;
   forecastTempMin.innerHTML=Math.round(minFahTemp);
-  }
-  function maxvalue(value){
-  let maxFahTemp=((value * 9) / 5) + 32;
+  let maxFahTemp=((forecastmax * 9) / 5) + 32;
   forecastTempMax.innerHTML=Math.round(maxFahTemp);
-  }
-  minvalue(forecastmin);
-  maxvalue(forecastmax);
 }
 
 function displayCelcius(event){
   event.preventDefault;
   let tempElement=document.querySelector(".city-temp");
   let unitDisplayed=document.querySelector(".units");
-  let forecastTempMin=document.querySelector(".weather-forecast-temperature-min");
-  let forecastTempMax=document.querySelector(".weather-forecast-temperature-max");
+ // let forecastTempMin=document.querySelector(".weather-forecast-temperature-min");
+ // let forecastTempMax=document.querySelector(".weather-forecast-temperature-max");
   unitDisplayed.innerHTML="°C";
   tempElement.innerHTML=Math.round(celsiusTemperature);
-  forecastTempMin.innerHTML=Math.round(forecastmin);
-  forecastTempMax.innerHTML=Math.round(forecastmax);
+ // forecastTempMin.innerHTML=Math.round(forecastmin);
+ // forecastTempMax.innerHTML=Math.round(forecastmax);
 }
 
 let celsiusTemperature=null;
