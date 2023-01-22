@@ -43,8 +43,8 @@ function displayForecast(response){
   let forecastHTML = `<div class="row">`;
   forecast.forEach(function (forecastDay, index) {
   if (index>0){
-  let forecastmin=Math.round(forecastDay.temperature.minimum);
-  let forecastmax=Math.round(forecastDay.temperature.maximum);
+  forecastmin=Math.round(forecastDay.temperature.minimum);
+  forecastmax=Math.round(forecastDay.temperature.maximum);
 
     forecastHTML =
       forecastHTML + `<div class="col">
@@ -269,24 +269,40 @@ function getParis() {
 function displayFahrenheit(event){
   event.preventDefault;
   let tempElement=document.querySelector(".city-temp");
-//  let forecastTempMin=document.querySelector(".weather-forecast-temperature-min");
-//  let forecastTempMax=document.querySelector(".weather-forecast-temperature-max");
+  let forecastTempMin=document.querySelector(".weather-forecast-temperature-min");
+  let forecastTempMax=document.querySelector(".weather-forecast-temperature-max");
   let unitDisplayed=document.querySelector(".units");
   let fahrenheitTemp=((celsiusTemperature * 9) / 5) + 32;
   unitDisplayed.innerHTML="°F";
   tempElement.innerHTML=Math.round(fahrenheitTemp);
- // forecastTempMin.innerHTML=Math.round(forecastFahMin);
+  function minvalue (value){
+  let minFahTemp=((value * 9) / 5) + 32;
+  forecastTempMin.innerHTML=Math.round(minFahTemp);
+  }
+  function maxvalue(value){
+  let maxFahTemp=((value * 9) / 5) + 32;
+  forecastTempMax.innerHTML=Math.round(maxFahTemp);
+  }
+  minvalue(forecastmin);
+  maxvalue(forecastmax);
 }
 
 function displayCelcius(event){
   event.preventDefault;
   let tempElement=document.querySelector(".city-temp");
   let unitDisplayed=document.querySelector(".units");
+  let forecastTempMin=document.querySelector(".weather-forecast-temperature-min");
+  let forecastTempMax=document.querySelector(".weather-forecast-temperature-max");
   unitDisplayed.innerHTML="°C";
   tempElement.innerHTML=Math.round(celsiusTemperature);
+  forecastTempMin.innerHTML=Math.round(forecastmin);
+  forecastTempMax.innerHTML=Math.round(forecastmax);
 }
 
 let celsiusTemperature=null;
+let forecastmin=null;
+let forecastmax=null;
+
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", searchEngine);

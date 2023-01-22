@@ -149,7 +149,7 @@ a:hover {
     backdrop-filter: blur(10px);
     border-radius: 32px;
     color: white;
-    padding: 24px 80px;
+    padding: 24px 88px;
 }
 
 .img-sec {
@@ -177,9 +177,9 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 140px;
-    width: 160px;
-    margin: 0 auto;
+    height: 120px;
+    width: 140px;
+    margin: 12px auto;
 }
 
 #img-main {
