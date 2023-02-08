@@ -42,7 +42,7 @@ function displayForecast(response){
   let forecastElement=document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
   forecast.forEach(function (forecastDay, index) {
-  if (index>0){
+  if (index>0 && index<6){
   forecastmin=Math.round(forecastDay.temperature.minimum);
   forecastmax=Math.round(forecastDay.temperature.maximum);
 
